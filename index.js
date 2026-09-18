@@ -1,11 +1,12 @@
+//import "dotenv/config"
+require("dotenv").config();
 const express = require("express");
 const mongoose = require("mongoose");
 const userRoute = require("./routes/userRoutes.js");
 const productRoute = require("./routes/productRoutes.js");
 
-const compass_string = "mongodb://localhost:27017/cohort8_db";
-const atlas_string =
-  "mongodb+srv://damilolaogunleye420_db_user:Hollyguy1@cluster0.r3erp6x.mongodb.net/cohort8_db?appName=Cluster0";
+const compass_string = process.env.COMPASS_STRING;
+const atlas_string = process.env.ATLAS_STRING;
 
 mongoose
   .connect(atlas_string)
@@ -13,7 +14,7 @@ mongoose
   .catch((err) => console.error("Connection Error: ", err));
 
 const app = express();
-const port = 8888;
+const port = process.env.PORT;
 
 app.use(express.json());
 
